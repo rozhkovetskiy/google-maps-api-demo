@@ -39,7 +39,8 @@
   </div>
   <div class="row">
     <div class="col-md-12 mt-3">
-      <iframe *ngIf="iframeUrl" [src]="iframeUrl" frameborder="0"></iframe>
+        <app-loader *ngIf="!iframeUrl"></app-loader>
+        <iframe *ngIf="iframeUrl" [src]="iframeUrl" frameborder="0"></iframe>
     </div>
   </div>
   <h4 *ngIf="placeInformation.origin.reviews">Some reviews for origin place:</h4>
@@ -70,3 +71,4 @@
       </div>
     </div>
   </div>
+</div>
