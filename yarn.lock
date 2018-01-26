@@ -181,6 +181,10 @@
   dependencies:
     typescript "~2.6.2"
 
+"@types/googlemaps@^3.30.5":
+  version "3.30.5"
+  resolved "https://registry.yarnpkg.com/@types/googlemaps/-/googlemaps-3.30.5.tgz#7c7c09b57cd448eb95c350d6664879a5d44de99a"
+
 "@types/jasmine@*", "@types/jasmine@~2.8.3":
   version "2.8.5"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.8.5.tgz#96e58872583fa80c7ea0dd29024b180d5e133678"
@@ -795,6 +799,10 @@ boom@5.x.x:
   resolved "https://registry.yarnpkg.com/boom/-/boom-5.2.0.tgz#5dd9da6ee3a5f302077436290cb717d3f4a54e02"
   dependencies:
     hoek "4.x.x"
+
+bootstrap@^4.0.0-beta:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0.tgz#ceb03842c145fcc1b9b4e15da2a05656ba68469a"
 
 brace-expansion@^1.1.7:
   version "1.1.8"
