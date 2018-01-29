@@ -9,7 +9,10 @@ import { CordsModel } from '../models/cords.model';
 
 @Injectable()
 export class GoogleMapsService {
+
+  
   private apiKey = 'AIzaSyBOsRU8IKrr4gge5B7ZQqlxITphxEMcy2g';
+
   constructor(
     private sanitizer: DomSanitizer,
     private http: HttpClient

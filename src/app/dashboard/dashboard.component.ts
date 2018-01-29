@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { CordsModel } from '../shared/models/cords.model';
 import { DirectionModel } from '../shared/models/direction.model';
+import { PlaceIDsModel } from '../shared/models/placeIDs.model';
 
 
 import { GoogleMapsService } from '../shared/services/google-maps.service';
@@ -21,15 +23,7 @@ export class DashboardComponent implements OnInit {
     origin: [],
     destination: []
   };
-  public placeIDs = {
-    origin: '',
-    destination: ''
-  };
-
-  public placeInformation = {
-    origin: [],
-    destination: []
-  };
+  public placeIDs = new PlaceIDsModel();
 
   constructor(private googleMapsService: GoogleMapsService) { }
 
@@ -48,7 +42,8 @@ export class DashboardComponent implements OnInit {
       this.placeIDs[type] = this.autocomplete[type][index].place_id;
       this.autocomplete[type] = [];
     }
-    this.getPlaceInfo(type);
+    console.log(`type: ${type}\nnew value: ${ this.placeIDs[type]}`);
+    this.googleMapsService.
   }
 
   public getMap(cords: CordsModel) {
@@ -61,7 +56,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  public getAutocomplite (param: string) {
+  public getAutocomplete (param: string) {
     this.googleMapsService.autocomplitePlace(this.direction[param])
       .subscribe((response) => {
         if (response.status === 'OK') {
@@ -72,17 +67,5 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  private getPlaceInfo(type: string) {
-    this.googleMapsService.getPlaceInformation(this.placeIDs[type])
-      .subscribe((response) => {
-        console.log('response: ');
-        console.log(response);
-        if (response.status === 'OK') {
-          this.placeInformation[type] = response.result;
-        } else {
-          this.placeInformation[type] = [];
-        }
-        console.log(this.placeInformation[type]);
-      });
-  }
+
 }

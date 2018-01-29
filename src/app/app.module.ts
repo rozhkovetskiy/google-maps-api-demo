@@ -8,12 +8,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { GoogleMapsService } from './shared/services/google-maps.service';
 import { LoaderComponent } from './loader/loader.component';
+import { ReviewsComponent } from './reviews/reviews.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    LoaderComponent
+    LoaderComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,

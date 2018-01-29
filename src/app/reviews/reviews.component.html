@@ -1,0 +1,29 @@
+<h4 *ngIf="placeInformation.origin.reviews">Some reviews for origin place:</h4>
+<div class="row" *ngIf="placeInformation.origin.reviews">
+  <div class="col-lg-4" *ngFor="let review of placeInformation.origin.reviews">
+    <div class="media mb-3 mt-1">
+      <img class="w-25 mr-3" [src]="review.profile_photo_url" alt="avatar">
+      <div class="media-body">
+        <h5 class="mt-0">{{review.author_name}}</h5>
+        <h6>Rating: {{review.rating}}</h6>
+        <h6>{{review.relative_time_description}}</h6>
+        {{review.text}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<h4  *ngIf="placeInformation.destination.reviews">Some reviews for destination place:</h4>
+<div class="row" *ngIf="placeInformation.destination.reviews">
+  <div class="col-lg-4" *ngFor="let review of placeInformation.destination.reviews">
+    <div class="media mb-3 mt-1">
+      <img class="w-10 mr-3" [src]="review.profile_photo_url" alt="avatar">
+      <div class="media-body">
+        <h5 class="mt-0">{{review.author_name}}</h5>
+        <h6>Rating: {{review.rating}}</h6>
+        <h6>{{review.relative_time_description}}</h6>
+        {{review.text}}
+      </div>
+    </div>
+  </div>
+</div>
