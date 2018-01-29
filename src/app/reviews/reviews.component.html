@@ -1,6 +1,6 @@
-<h4 *ngIf="placeInformation.origin.reviews">Some reviews for origin place:</h4>
-<div class="row" *ngIf="placeInformation.origin.reviews">
-  <div class="col-lg-4" *ngFor="let review of placeInformation.origin.reviews">
+<h4 class="mt-5 mb-3" *ngIf="reviewsOrigin.data.reviews">Some reviews for origin place:</h4>
+<div class="row" *ngIf="reviewsOrigin.data.reviews">
+  <div class="col-lg-4" *ngFor="let review of reviewsOrigin.data.reviews">
     <div class="media mb-3 mt-1">
       <img class="w-25 mr-3" [src]="review.profile_photo_url" alt="avatar">
       <div class="media-body">
@@ -13,9 +13,9 @@
   </div>
 </div>
 
-<h4  *ngIf="placeInformation.destination.reviews">Some reviews for destination place:</h4>
-<div class="row" *ngIf="placeInformation.destination.reviews">
-  <div class="col-lg-4" *ngFor="let review of placeInformation.destination.reviews">
+<h4  *ngIf="reviewsDestination.data.reviews">Some reviews for destination place:</h4>
+<div class="row" *ngIf="reviewsDestination.data.reviews">
+  <div class="col-lg-4" *ngFor="let review of reviewsDestination.data.reviews">
     <div class="media mb-3 mt-1">
       <img class="w-10 mr-3" [src]="review.profile_photo_url" alt="avatar">
       <div class="media-body">

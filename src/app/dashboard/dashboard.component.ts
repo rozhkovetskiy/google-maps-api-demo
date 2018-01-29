@@ -42,8 +42,6 @@ export class DashboardComponent implements OnInit {
       this.placeIDs[type] = this.autocomplete[type][index].place_id;
       this.autocomplete[type] = [];
     }
-    console.log(`type: ${type}\nnew value: ${ this.placeIDs[type]}`);
-    this.googleMapsService.
   }
 
   public getMap(cords: CordsModel) {
@@ -51,13 +49,15 @@ export class DashboardComponent implements OnInit {
   }
 
   public getDirectionMap() {
-    if (this.direction.origin && this.direction.destination) {
-      this.iframeUrl = this.googleMapsService.getDirectionMap(this.direction);
-    }
+    // if (this.direction.origin && this.direction.destination) {
+    //   this.iframeUrl = this.googleMapsService.getDirectionMap(this.direction);
+      this.googleMapsService.getPlaceInformation(this.placeIDs.origin, 'origin');
+      // this.googleMapsService.getPlaceInformation(this.placeIDs.destination, 'destination');
+    // }
   }
 
   public getAutocomplete (param: string) {
-    this.googleMapsService.autocomplitePlace(this.direction[param])
+    this.googleMapsService.autocompletePlace(this.direction[param])
       .subscribe((response) => {
         if (response.status === 'OK') {
           this.autocomplete[param] = response.predictions;
