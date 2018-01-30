@@ -1,29 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import { SafeResourceUrl } from '@angular/platform-browser';
+
+import { GoogleMapsService } from '../shared/services/google-maps.service';
 
 import { CordsModel } from '../shared/models/cords.model';
 import { DirectionModel } from '../shared/models/direction.model';
 import { PlaceIDsModel } from '../shared/models/placeIDs.model';
-
-
-import { GoogleMapsService } from '../shared/services/google-maps.service';
-import { SafeResourceUrl } from '@angular/platform-browser';
+import {AutocompleteModel, WrapModel} from '../shared/models/autocomplete.model';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent implements OnInit {
 
   public cords: CordsModel;
   public iframeUrl: SafeResourceUrl;
   public direction = new DirectionModel();
 
-  public autocomplete = {
+  public placeIDs = new PlaceIDsModel();
+
+  public autocomplete: {
+    origin: AutocompleteModel[],
+    destination: AutocompleteModel[]
+  } = {
     origin: [],
     destination: []
   };
-  public placeIDs = new PlaceIDsModel();
 
   constructor(private googleMapsService: GoogleMapsService) { }
 
@@ -49,21 +54,17 @@ export class DashboardComponent implements OnInit {
   }
 
   public getDirectionMap() {
-    // if (this.direction.origin && this.direction.destination) {
-    //   this.iframeUrl = this.googleMapsService.getDirectionMap(this.direction);
+    if (this.direction.origin && this.direction.destination) {
+      this.iframeUrl = this.googleMapsService.getDirectionMap(this.direction);
       this.googleMapsService.getPlaceInformation(this.placeIDs.origin, 'origin');
-      // this.googleMapsService.getPlaceInformation(this.placeIDs.destination, 'destination');
-    // }
+      this.googleMapsService.getPlaceInformation(this.placeIDs.destination, 'destination');
+    }
   }
 
-  public getAutocomplete (param: string) {
+  public getAutocomplete(param: string) {
     this.googleMapsService.autocompletePlace(this.direction[param])
-      .subscribe((response) => {
-        if (response.status === 'OK') {
-          this.autocomplete[param] = response.predictions;
-        } else {
-          this.autocomplete[param] = [];
-        }
+      .subscribe((response: WrapModel<AutocompleteModel>) => {
+          this.autocomplete[param] = response.predictions.map(item => new AutocompleteModel(item));
       });
   }
 

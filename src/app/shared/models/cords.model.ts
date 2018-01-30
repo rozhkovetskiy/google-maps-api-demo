@@ -1,9 +1,9 @@
 export class CordsModel {
-  lat: number;
-  lon: number;
+  latitude: number;
+  longitude: number;
 
-  constructor (data?: any) {
-    this.lat = data.latitude || 0;
-    this.lon = data.longitude || 0;
+  constructor(data: any = {}) {
+    this.latitude = data.latitude || 0;
+    this.longitude = data.longitude || 0;
   }
 }

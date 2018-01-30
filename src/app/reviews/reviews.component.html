@@ -13,11 +13,11 @@
   </div>
 </div>
 
-<h4  *ngIf="reviewsDestination.data.reviews">Some reviews for destination place:</h4>
+<h4 class="mt-5 mb-3" *ngIf="reviewsDestination.data.reviews">Some reviews for destination place:</h4>
 <div class="row" *ngIf="reviewsDestination.data.reviews">
   <div class="col-lg-4" *ngFor="let review of reviewsDestination.data.reviews">
     <div class="media mb-3 mt-1">
-      <img class="w-10 mr-3" [src]="review.profile_photo_url" alt="avatar">
+      <img class="w-25 mr-3" [src]="review.profile_photo_url" alt="avatar">
       <div class="media-body">
         <h5 class="mt-0">{{review.author_name}}</h5>
         <h6>Rating: {{review.rating}}</h6>

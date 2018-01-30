@@ -12,7 +12,7 @@
             id="origin"
             (keyup.enter)="setDirection(0, 'origin')"
             placeholder="Type origin address...">
-          <ul *ngIf="autocomplete.origin" class="autocomplete pl-0">
+          <ul *ngIf="autocomplete?.origin" class="autocomplete pl-0">
             <li class="autocomplete-item" *ngFor="let autocomplete of autocomplete.origin; let i = index" (click)="setDirection(i, 'origin')">
               {{autocomplete.description}}</li>
           </ul>
@@ -27,7 +27,7 @@
             class="form-control w-100"
             id="destination"
             placeholder="Type destination address...">
-          <ul *ngIf="autocomplete.destination" class="autocomplete pl-0">
+          <ul *ngIf="autocomplete?.destination" class="autocomplete pl-0">
             <li class="autocomplete-item" *ngFor="let autocomplete of autocomplete.destination; let i = index" (click)="setDirection(i, 'destination')">
               {{autocomplete.description}}
             </li>
