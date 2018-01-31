@@ -13,3 +13,7 @@ export class ReviewsModel {
     this.text = data.text || '';
   }
 }
+
+export class WrapData<T> {
+  data: T[];
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { GoogleMapsService } from '../shared/services/google-maps.service';
+import { ReviewsModel, WrapData } from '../shared/models/reviews.model';
 
 @Component({
   selector: 'app-reviews',
@@ -10,8 +11,8 @@ import { GoogleMapsService } from '../shared/services/google-maps.service';
 
 export class ReviewsComponent implements OnInit {
 
-  public reviewsOrigin: any;
-  public reviewsDestination: any;
+  public reviewsOrigin: WrapData<ReviewsModel>;
+  public reviewsDestination: WrapData<ReviewsModel>;
 
   constructor(private googleMapsService: GoogleMapsService) { }
 

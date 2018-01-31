@@ -8,16 +8,16 @@ import 'rxjs/add/operator/catch';
 
 import { CordsModel } from '../models/cords.model';
 import { DirectionModel } from '../models/direction.model';
-import {AutocompleteModel, WrapModel} from '../models/autocomplete.model';
-import { ReviewsModel } from '../models/reviews.model';
+import { AutocompleteModel, WrapModel } from '../models/autocomplete.model';
+import { ReviewsModel, WrapData } from '../models/reviews.model';
+import { apiKey } from '../utils/constants';
 
 
 @Injectable()
 export class GoogleMapsService {
 
-  public reviewsOrigin: any = {data: []};
-  public reviewsDestination: any = {data: []};
-  private apiKey = 'AIzaSyBOsRU8IKrr4gge5B7ZQqlxITphxEMcy2g';
+  public reviewsOrigin: WrapData<ReviewsModel> = {data: []};
+  public reviewsDestination: WrapData<ReviewsModel> = {data: []};
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -25,12 +25,12 @@ export class GoogleMapsService {
   ) { }
 
   public getMap(cords: CordsModel) {
-    const url = `https://www.google.com/maps/embed/v1/view?key=${this.apiKey}&center=${cords.latitude},${cords.longitude}&zoom=13`;
+    const url = `https://www.google.com/maps/embed/v1/view?key=${apiKey}&center=${cords.latitude},${cords.longitude}&zoom=13`;
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
   public getDirectionMap(direction: DirectionModel) {
-    const url = `https://www.google.com/maps/embed/v1/directions?key=${this.apiKey}&origin=${direction.origin}
+    const url = `https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=${direction.origin}
                  &destination=${direction.destination}`;
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
@@ -38,7 +38,7 @@ export class GoogleMapsService {
   public autocompletePlace(input: string): Observable<WrapModel<AutocompleteModel>> {
     const url = '/api/place/autocomplete/json';
     const params = new HttpParams()
-      .set('key', this.apiKey)
+      .set('key', apiKey)
       .set('types', 'geocode')
       .set('input', input);
     return this.http.get<WrapModel<AutocompleteModel>>(url, {params: params});
@@ -47,7 +47,7 @@ export class GoogleMapsService {
   public getPlaceInformation(placeID: string, type: string) {
     const url = '/api/place/details/json';
     const params = new HttpParams()
-      .set('key', this.apiKey)
+      .set('key', apiKey)
       .set('placeid', placeID);
     this.http.get<any>(url, {params: params})
       .subscribe((response) => {
